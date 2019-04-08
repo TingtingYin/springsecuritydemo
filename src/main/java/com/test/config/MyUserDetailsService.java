@@ -14,6 +14,6 @@ public class MyUserDetailsService implements UserDetailsService {
         System.out.println("your username : " + s);
         //验证用户名在数据库中是否存在
 
-        return new User(s,"11",AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new User(s,"11",true,true,true,true,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }
