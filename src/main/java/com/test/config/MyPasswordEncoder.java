@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
-@Component
+//@Component
 public class MyPasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {
@@ -14,13 +14,10 @@ public class MyPasswordEncoder implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence charSequence, String s) {
-        if(charSequence.toString().equals(s))
+        if(this.encode(charSequence.toString()).equals(s))
             return true;
         else
             return false;
     }
 
-    public static void main(String[] args) {
-
-    }
 }
