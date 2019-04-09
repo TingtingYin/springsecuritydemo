@@ -1,2 +1,6 @@
 server:
   port: 8099
+#imooc:
+#  security:
+#    browser:
+#      loginPage: login2.html

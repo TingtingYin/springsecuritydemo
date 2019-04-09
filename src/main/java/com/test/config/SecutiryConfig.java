@@ -1,5 +1,7 @@
 package com.test.config;
 
+import com.test.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecutiryConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -17,11 +22,11 @@ public class SecutiryConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-                .loginPage("/login.html")
+                .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login.html").permitAll()
+                .antMatchers("/authentication/require","/authentication/"+securityProperties.getBrowser().getLoginPage()).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
