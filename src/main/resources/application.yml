@@ -1,6 +1,7 @@
 server:
   port: 8099
-#imooc:
-#  security:
-#    browser:
+imooc:
+  security:
+    browser:
 #      loginPage: login2.html
+      loginType: REDIRECT

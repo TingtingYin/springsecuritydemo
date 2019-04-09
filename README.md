@@ -9,3 +9,6 @@
 9. 登录成功处理，访问index.html,输入账号密码后，
 出现authentication的json信息
 10. 自定义登录失败处理
+11. 配置loginType
+    - json : 返回json信息
+    - redirect : 登录成功后跳转到用户要访问的页面（默认）
