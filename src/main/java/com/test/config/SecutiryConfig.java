@@ -36,7 +36,7 @@ public class SecutiryConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(authenticationFailureHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authentication/require","/authentication/"+securityProperties.getBrowser().getLoginPage()).permitAll()
+                .antMatchers("/authentication/require","/authentication/"+securityProperties.getBrowser().getLoginPage(),"/code/image").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
