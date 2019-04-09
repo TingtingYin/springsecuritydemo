@@ -16,9 +16,16 @@ public class SecutiryConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().and()
+        http.formLogin()
+                .loginPage("/login.html")
+                .loginProcessingUrl("/authentication/form")
+                .and()
                 .authorizeRequests()
+                .antMatchers("/login.html").permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf()
+                .disable();
     }
 }
