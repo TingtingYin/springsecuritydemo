@@ -28,6 +28,11 @@
             <artifactId>spring-social-config</artifactId>
             <version>1.1.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

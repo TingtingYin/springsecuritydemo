@@ -30,8 +30,7 @@ public class BrowserSecurityController {
     @RequestMapping("authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public String requireAuthentication(HttpServletRequest request, HttpServletResponse response)throws IOException {SavedRequest savedRequest = requestCache.getRequest(request,response);
-        if (savedRequest != null){
-            String targetUrl = savedRequest.getRedirectUrl();
+        if (savedRequest != null){ String targetUrl = savedRequest.getRedirectUrl();
             System.out.println("引发跳转的请求：" + targetUrl);
             if(targetUrl.endsWith(".html")){
                 //redirectStrategy.sendRedirect(request,response,securityProperties.getBrowser().getLoginPage());
