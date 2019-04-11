@@ -1,6 +1,8 @@
 package com.test.controller;
 
 import com.test.image.ImageCode;
+import com.test.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -23,6 +25,9 @@ public class ValidateCodeController {
     public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+
+    @Autowired
+    private SecurityProperties securityProperties;
     
     @GetMapping("/code/image")
     public void createCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -33,12 +38,12 @@ public class ValidateCodeController {
 
     private ImageCode createImageCode(HttpServletRequest request) {
 
-//        int width = ServletRequestUtils.getIntParameter(request, "width",
-//                securityProperties.getCode().getImage().getWidth());
-//        int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height",
-//                securityProperties.getCode().getImage().getHeight());
-        int width = 67;
-        int height = 23;
+        int width = ServletRequestUtils.getIntParameter(request, "width",
+                securityProperties.getCode().getImage().getWidth());
+        int height = ServletRequestUtils.getIntParameter(request, "height",
+                securityProperties.getCode().getImage().getHeight());
+//        int width = 67;
+//        int height = 23;
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         Graphics g = image.getGraphics();
@@ -58,7 +63,7 @@ public class ValidateCodeController {
         }
 
         String sRand = "";
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < securityProperties.getCode().getImage().getLength(); i++) {
             String rand = String.valueOf(random.nextInt(10));
             sRand += rand;
             g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));

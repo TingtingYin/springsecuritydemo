@@ -5,3 +5,6 @@ imooc:
     browser:
 #      loginPage: login2.html
       loginType: REDIRECT
+    code:
+      image:
+        length: 6
